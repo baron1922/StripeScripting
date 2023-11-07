@@ -31,7 +31,7 @@ function Invoke-Stripe() {
     $response = $null
     try {
         if ($Method -eq 'POST') {
-            $contentTypeHeader = @{ "Content-Type" = "application/x-wwww-form-urlencoded" }
+            # $contentTypeHeader = @{ "Content-Type" = "application/x-wwww-form-urlencoded" }
             $response = Invoke-WebRequest -Method POST -Uri $uri -Headers ($authorization + $Headers) -Body ($FormData)
         }
         else {
