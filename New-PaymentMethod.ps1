@@ -4,13 +4,12 @@ param(
         if ($_.Exists) {
             $true
         } else {
-            throw "$_ does nto exist." 
+            throw "File '$_' does not exist." 
         }
     })]
     [System.IO.FileInfo]$LiteralPath = "C:\Users\joe\repos\StripeScripting\mydata.csv",
     [string]$ApiKey="rk_test_51O6pkmCq8XnAqe14IYtA4zkwQecGAo0I4ljQRyICGsunvqNblnqywTd3oUm6DaLIjlHMWEAVFwjcnpa4KI5RE6Qw00m3Trc55v"
 )
-
 function Invoke-Stripe() {
     param(
         [ValidateSet('GET','POST')]$Method='GET',
@@ -46,9 +45,13 @@ function Invoke-Stripe() {
     $ProgressPreference = $SaveProgressPreference
     return $response
 }
-
 function New-Customer {
     param (
+        [ValidateScript({
+            if (-not($_.PSObject.Properties.name -contains "Name")) { throw "Data.Name property is missing" }
+            if (-not($_.PSObject.Properties.name -contains "Email")) { throw "Data.Email property is missing" }
+            $true
+        })]
         [PSCustomObject]$Data,
         [string]$ApiKey
     )
