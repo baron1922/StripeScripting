@@ -7,7 +7,7 @@ param(
             throw "File '$_' does not exist." 
         }
     })]
-    [System.IO.FileInfo]$LiteralPath = "C:\Users\joe\repos\StripeScripting\mydata.csv",
+    [System.IO.FileInfo]$LiteralPath = ".\mydata.csv",
     [string]$ApiKey="rk_test_51O6pkmCq8XnAqe14IYtA4zkwQecGAo0I4ljQRyICGsunvqNblnqywTd3oUm6DaLIjlHMWEAVFwjcnpa4KI5RE6Qw00m3Trc55v"
 )
 function Invoke-Stripe() {
